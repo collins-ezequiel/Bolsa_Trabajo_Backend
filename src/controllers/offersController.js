@@ -57,12 +57,18 @@ const deleteOffer = async (req, res) => {
 
 const getMyOffers = async (req, res) => {
   try {
-    const myOffers = await offerService.getMyOffers(req.user.id);
-    res.json(myOffers);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log("req.user:", req.user); // para ver si llega el token
+    const offers = await prisma.ofertaslaborales.findMany({
+      where: { empresa_id: req.user.id },
+      include: { postulaciones: true, usuarios: true }
+    });
+    res.json(offers);
+  } catch (err) {
+    console.error("Error en getMyOffers:", err); // 🔥 esto sí se verá en Render
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+
 
 module.exports = {
   createOffer,
