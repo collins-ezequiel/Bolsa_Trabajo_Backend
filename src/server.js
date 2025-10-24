@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 app.use(cors({
-  origin: "https://bolsa-trabajo-frontend.vercel.app"
+  origin: "https://bolsa-trabajo-frontend-zxhr.vercel.app"
 }));
 
 app.use(express.json());
