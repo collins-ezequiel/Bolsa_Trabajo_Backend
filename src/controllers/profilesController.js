@@ -1,5 +1,6 @@
 // controllers/profilesController.js
-const { prisma } = require('../../prisma/client');
+const { prisma } = require('../../prisma/client.js');
+
 
 const createProfile = async (req, res) => {
     try {

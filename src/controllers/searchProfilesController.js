@@ -1,5 +1,5 @@
 // controllers/searchProfilesController.js
-const { prisma } = require('../../prisma/client');
+const { prisma } = require('../../prisma/client.js');
 
 const searchProfiles = async (req, res) => {
     try {

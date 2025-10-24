@@ -1,3 +1,5 @@
+const { prisma } = require('../../prisma/client.js');
+
 const offerService = require('../services/offersService');
 
 // Crear oferta (EMPRESA)

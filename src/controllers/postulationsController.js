@@ -1,4 +1,6 @@
 // src/controllers/postulationsController.js
+const { prisma } = require('../../prisma/client.js');
+
 const postulationService = require("../services/postulationsService");
 
 // Crear (USUARIO)
