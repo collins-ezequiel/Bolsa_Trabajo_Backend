@@ -4,7 +4,9 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 app.use(cors({
-  origin: "https://bolsa-trabajo-frontend.vercel.app"
+  origin: "https://bolsa-trabajo-frontend.vercel.app",
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 
