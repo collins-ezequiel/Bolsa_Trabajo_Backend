@@ -23,16 +23,31 @@ const createProfile = async (req, res) => {
 
 const getProfileByUserId = async (req, res) => {
     try {
-        const profile = await prisma.perfiles.findFirst({
+        let profile = await prisma.perfiles.findFirst({
             where: { usuario_id: req.user.id },
             include: { usuarios: true }
         });
-        if (!profile) return res.status(404).json({ error: 'Perfil no encontrado' });
+
+        if (!profile) {
+            // Crear perfil vacío automáticamente
+            profile = await prisma.perfiles.create({
+                data: {
+                    usuario_id: req.user.id,
+                    descripcion: "",
+                    aptitudes: [],
+                    experiencia: [],
+                    educacion: [],
+                }
+            });
+        }
+
         res.json(profile);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
+
 
 const updateProfile = async (req, res) => {
     try {
