@@ -39,7 +39,7 @@ router.get(
 );
 
 // Actualizar estado (EMPRESA o ADMIN)
-router.put(
+router.patch(
     "/:id",
     authenticateToken,
     authorizeRoles("EMPRESA", "ADMIN"),

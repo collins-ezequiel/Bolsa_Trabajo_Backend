@@ -9,5 +9,7 @@ const { profileSchema } = require('../schemas/profileSchema');
 router.post('/', authenticateToken, validateBody(profileSchema), profileController.createProfile);
 router.get('/', authenticateToken, profileController.getProfileByUserId);
 router.put('/', authenticateToken, validateBody(profileSchema), profileController.updateProfile);
+// Obtener perfil de otro usuario por ID
+router.get("/user/:id", authenticateToken, profileController.getProfileById);
 
 module.exports = router;

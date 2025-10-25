@@ -1,6 +1,5 @@
 // controllers/profilesController.js
-const { prisma } = require('../../prisma/client.js');
-
+const { prisma } = require('../../prisma/client');
 
 const createProfile = async (req, res) => {
     try {
@@ -51,9 +50,24 @@ const updateProfile = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+const getProfileById = async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        const profile = await prisma.perfiles.findFirst({
+            where: { usuario_id: id },
+            include: { usuarios: true }
+        });
+        if (!profile) return res.status(404).json({ error: 'Perfil no encontrado' });
+        res.json(profile);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 module.exports = {
     createProfile,
     getProfileByUserId,
+    getProfileById,
     updateProfile
 };
