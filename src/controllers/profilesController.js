@@ -1,5 +1,6 @@
 // controllers/profilesController.js
-const { prisma } = require('../../prisma/client');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 const createProfile = async (req, res) => {
     try {
@@ -15,6 +16,7 @@ const createProfile = async (req, res) => {
         });
         res.status(201).json(profile);
     } catch (error) {
+        console.error("Error en createProfile:", error);
         res.status(500).json({ error: error.message });
     }
 };
