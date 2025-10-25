@@ -12,7 +12,7 @@ model ofertaslaborales {
   empresa_id          Int?
   titulo              String?
   descripcion         String?
-  requisitos          String[]     // (podés mantenerlo si querés)
+  requisitos          String[]
   fecha_publicacion   DateTime?    @default(now()) @db.Timestamptz(6)
   ubicacion           String?
   created_at          DateTime     @default(now()) @db.Timestamp(6)
